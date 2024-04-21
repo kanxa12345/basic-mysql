@@ -1,4 +1,6 @@
+import ReduxProvider from "@/redux/reduxProvider";
 import "./globals.css";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Create Next App",
@@ -8,7 +10,29 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body >{children}</body>
+      <body>
+        <ReduxProvider>
+          {children}
+          <Toaster
+            position="top-right"
+            gutter={12}
+            containerStyle={{ margin: "8px" }}
+            toastOptions={{
+              success: {
+                duration: 2500,
+              },
+              error: {
+                duration: 4000,
+              },
+              style: {
+                fontSize: "16px",
+                maxWidth: "500px",
+                padding: "16px 24px",
+              },
+            }}
+          />
+        </ReduxProvider>
+      </body>
     </html>
   );
 }
